@@ -26,8 +26,9 @@ function copy_to_container() {
 
 # Execute a command in the container and commit the resulting image
 function run_in_container () {
+
   COMMAND="$1"
-  log_debug "Executing command in container: $COMMAND"
+  log_debug "Executing command in container $IMAGE: $COMMAND"
   id=$(docker run -i -a stdin $IMAGE /bin/bash -c "$COMMAND")
   test $(docker wait $id) -eq 0
   docker commit $id $IMAGE > /dev/null
