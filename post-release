@@ -27,6 +27,8 @@ fi
 
 echo "-----> Injecting Logging Supervisor ..."
 
+log_debug "docker run -a stdout -i $IMAGE /usr/bin/dpkg -s supervisor"
+
 if docker run -a stdout -i $IMAGE /usr/bin/dpkg -s supervisor > /dev/null; then
   echo "supervisor is already installed (skipping apt-get update/install)"
 else
